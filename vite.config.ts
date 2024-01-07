@@ -32,7 +32,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       Components({
         // dirs 指定组件所在位置，默认为 src/components
         // 可以让我们使用自己定义组件的时候免去 import 的麻烦
-        dirs: ["src/components/", "src/layout"],
+        dirs: ["src/components/", "src/**/components", "src/layout"],
         // 配置需要将哪些后缀类型的文件进行自动按需引入，'vue'为默认值
         extensions: ["vue", "ts"],
         // 解析组件，这里以 Element Plus 为例
