@@ -1,12 +1,11 @@
-<!-- 用户管理 -->
 <script setup lang="ts">
 defineOptions({
   name: "User",
   inheritAttrs: false,
 });
 
-const queryFormRef = ref(ElForm); // 查询表单
-const userFormRef = ref(ElForm); // 用户表单
+const queryFormRef = ref(); // 查询表单
+const userFormRef = ref(); // 用户表单
 
 const loading = ref(false); //  加载状态
 const removeIds = ref([]); // 删除用户ID集合 用于批量删除
@@ -213,11 +212,11 @@ onMounted(() => {
             />
 
             <el-table-column label="状态" align="center" prop="status">
-              <template #default="scope">
+              <!-- <template #default="scope">
                 <el-tag :type="scope.row.status == 1 ? 'success' : 'info'">{{
                   scope.row.status == 1 ? "启用" : "禁用"
                 }}</el-tag>
-              </template>
+              </template> -->
             </el-table-column>
             <el-table-column
               label="创建时间"
