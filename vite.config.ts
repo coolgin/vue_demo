@@ -2,6 +2,8 @@ import { ConfigEnv, UserConfig, defineConfig, loadEnv } from "vite";
 import path, { resolve } from "path";
 import Components from "unplugin-vue-components/vite";
 import AutoImport from "unplugin-auto-import/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import IconsResolver from "unplugin-icons/resolver";
 //import IconResolver from "unplugin-icons/resolver";
 import eslintPlugin from "vite-plugin-eslint";
 import vueJsx from "@vitejs/plugin-vue-jsx";
@@ -36,7 +38,12 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         // 配置需要将哪些后缀类型的文件进行自动按需引入，'vue'为默认值
         extensions: ["vue", "ts"],
         // 解析组件，这里以 Element Plus 为例
-        resolvers: [],
+        resolvers: [
+          // 自动导入 Element Plus 组件
+          ElementPlusResolver(),
+          // 自动注册图标组件
+          IconsResolver({ enabledCollections: ["ep"] }),
+        ],
         // 遍历子目录
         deep: true,
         dts: path.resolve(pathSrc, "types", "components.d.ts"), // 指定自动导入组件TS类型声明文件路径
@@ -44,6 +51,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       //自动导入组件
       AutoImport({
         imports: ["vue", "vuex", "vue-router"],
+        resolvers: [ElementPlusResolver(), IconsResolver({})],
         dts: path.resolve(pathSrc, "types", "auto-imports.d.ts"), // 指定自动导入函数TS类型声明文件路径
         eslintrc: {
           enabled: true,

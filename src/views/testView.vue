@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const tableData = ref([
+const tableData = [
   {
     date: "2016-05-03",
     name: "Tom",
@@ -20,7 +20,7 @@ const tableData = ref([
     name: "Tom",
     address: "No. 189, Grove St, Los Angeles",
   },
-]);
+];
 </script>
 <template>
   <el-table :data="tableData" style="width: 100%">
